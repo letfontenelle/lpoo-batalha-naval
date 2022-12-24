@@ -10,7 +10,8 @@ public class Ship {
 		this.board = board;
 		position = null;
 	}
-
+	
+	
 
 	protected Board getBoard() {
 		return board;

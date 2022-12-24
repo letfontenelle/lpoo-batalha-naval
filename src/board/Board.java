@@ -33,6 +33,10 @@ public class Board {
 		this.columns = columns;
 	}
 	
-	
-	
+	public Ship ship(int row, int column) {
+		return ships[row][column];
+	}
+	public Ship ship(Position position) {
+		return ships[position.getRow()][position.getColumn()];
+	}
 }
