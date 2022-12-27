@@ -16,7 +16,7 @@ public class Ship {
 	public static int[][] getShipTypes() {
 		// { 1 -> quantidade de peças no tabuleiro, 5 -> quantidade de espaços no tabuleiro }
 		// { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 }
-		int[][] shipTypes = { { 2, 4 } };
+		int[][] shipTypes = { { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 } };
 		return shipTypes;
 	}
 }

@@ -14,14 +14,12 @@ public class BattleMatch {
 		System.out.println("");
 		System.out.println("Navios jogador 1: ");
 		this.setShipsOnBoard(boardPlayer1);
-		boardPlayer1.printBoard();
 
 		boardPlayer2 = new Board(10, 10);
 
 		System.out.println("");
 		System.out.println("Navios jogador 2: ");
 		this.setShipsOnBoard(boardPlayer2);
-		boardPlayer2.printBoard();
 
 	}
 
@@ -34,6 +32,9 @@ public class BattleMatch {
 		// { { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 } }
 		for (int i = 0; i < shipTypes.length; i++) {
 			for (int j = 0; j < shipTypes[i][0]; j++) {
+				board.printBoard();
+				System.out.println("");
+
 				switch(shipTypes[i][1]) {
 					case 5:
 						System.out.printf("Digite o 1˚ Porta aviões: ");
@@ -55,6 +56,7 @@ public class BattleMatch {
 
 				System.out.println("Digite a primeira posição (0-9): ");
 				int position1 = UI.input();
+
 				System.out.println("Digite a segunda posição (A-J): ");
 				String position2 = UI.inputString();
 
@@ -62,6 +64,14 @@ public class BattleMatch {
 				String direction = UI.inputString();
 
 				String validationText = board.setShip(position1, position2, direction, shipTypes[i][1]);
+
+				if (validationText.equals("valido")) {
+					continue;
+				}
+
+				System.out.println("\n Erro: " + validationText);
+				System.out.println("");
+				j--;
 			}
 		}
 	}

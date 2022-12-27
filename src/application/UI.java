@@ -2,13 +2,11 @@ package application;
 
 import java.util.Scanner;
 
-import battle.BattleShip;
-
 public class UI {
 	public static void printBoard(int[][] matrizBoard) {
-		for (int i = 0; i < matrizBoard.length; i++) {
-			System.out.print((9 - i) + " ");
-			for (int j = 0; j < matrizBoard.length; j++) {
+		for (int i = 9; i >= 0; i--) {
+			System.out.print(i + " ");
+			for (int j = 0; j < 10; j++) {
 				if (matrizBoard[i][j] == 1) {
 					System.out.print("1");
 				} else {
