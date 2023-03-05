@@ -19,20 +19,14 @@ public class BattleMatch {
 		System.out.println("");
 		System.out.println("Navios jogador 1: ");
 		this.setShipsOnBoard(boardPlayer1);
-<<<<<<< HEAD
 		System.out.println("GRELHA AZUL");
 		boardPlayer1.printBoard();
 		
-		
-=======
-
->>>>>>> 6dad724b29277b83c99afad02b38f4da3d9200dd
 		boardPlayer2 = new Board(10, 10);
 
 		System.out.println("");
 		System.out.println("Navios jogador 2: ");
 		this.setShipsOnBoard(boardPlayer2);
-<<<<<<< HEAD
 		System.out.println("GRELHA VERMELHA");
 		boardPlayer2.printBoard();
 		
@@ -45,10 +39,6 @@ public class BattleMatch {
 		System.out.println("ATAQUE - Vez da grelha azul! Escolha os alvos:");
 		this.setAttack(boardAtaque1);
 		boardAtaque1.printBoard();
-		
-		
-=======
->>>>>>> 6dad724b29277b83c99afad02b38f4da3d9200dd
 
 	}
 
@@ -61,8 +51,6 @@ public class BattleMatch {
 		// { { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 } }
 		for (int i = 0; i < shipTypes.length; i++) {
 			for (int j = 0; j < shipTypes[i][0]; j++) {
-				board.printBoard();
-				System.out.println("");
 
 				switch(shipTypes[i][1]) {
 					case 5:
