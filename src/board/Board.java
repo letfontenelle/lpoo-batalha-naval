@@ -50,7 +50,15 @@ public class Board {
 			return "Já existe uma peça nesse lugar";
 		}
 
-		this.matriz[position1][intPosition2] = 1;
+		int[][] cloneMatriz = new int[10][10];
+
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				cloneMatriz[i][j] = this.matriz[i][j];
+			}
+		}
+
+		cloneMatriz[position1][intPosition2] = 1;
 
 		int addPosition1 = position1;
 		int addPosition2 = intPosition2;
@@ -69,16 +77,29 @@ public class Board {
 				case "esquerda":
 					addPosition2 -= 1;
 					break;
+				default:
+					return "Direção inválida";
 			}
 
 			if ((addPosition1 < 0 || addPosition1 > 9) || (addPosition2 < 0 || addPosition2 > 9)) {
 				System.out.println( "Peça fora do tabuleiro, tente novamente.");
 			}
+<<<<<<< HEAD
 			//System.out.println(addPosition1 + " " + addPosition2);
 			//System.out.println(position1 + " " + position2);
 			this.matriz[addPosition1][addPosition2] = 1;
 			// System.out.println(this.matriz[addPosition1][addPosition2]);
+=======
+
+			if (cloneMatriz[addPosition1][addPosition2] != 0) {
+				return "Já existe uma peça nesse lugar";
+			}
+
+			cloneMatriz[addPosition1][addPosition2] = 1;
+>>>>>>> 6dad724b29277b83c99afad02b38f4da3d9200dd
 		}
+
+		this.matriz = cloneMatriz.clone();
 
 		return "valido";
 	}
