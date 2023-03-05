@@ -3,12 +3,15 @@ package board;
 import application.UI;
 
 public class Board {
-	private int[][] matriz;
+	
+	
+	protected int[][] matriz;
 	private int rows;
 	private int columns;
-	private  Ship[][] ships;
 
 	public Board(int rows, int columns) {
+		
+		
 		this.rows = rows;
 		this.columns = columns;
 
@@ -18,6 +21,10 @@ public class Board {
 				matriz[i][j] = 0;
 			}
 		}
+	}
+
+	public int[][] getMatriz() {
+		return matriz;
 	}
 
 	public void printBoard() {
@@ -50,10 +57,10 @@ public class Board {
 
 		for (int i = 1; i < qntd; i++) {
 			switch (formatDirection) {
-				case "cima":
+				case "baixo":
 					addPosition1 += 1;
 					break;
-				case "baixo":
+				case "cima":
 					addPosition1 -= 1;
 					break;
 				case "direita":
@@ -65,16 +72,42 @@ public class Board {
 			}
 
 			if ((addPosition1 < 0 || addPosition1 > 9) || (addPosition2 < 0 || addPosition2 > 9)) {
-				return "Peça fora do tabuleiro";
+				System.out.println( "Peça fora do tabuleiro, tente novamente.");
 			}
-			System.out.println(addPosition1 + " " + addPosition2);
-			System.out.println(position1 + " " + position2);
+			//System.out.println(addPosition1 + " " + addPosition2);
+			//System.out.println(position1 + " " + position2);
 			this.matriz[addPosition1][addPosition2] = 1;
 			// System.out.println(this.matriz[addPosition1][addPosition2]);
 		}
 
 		return "valido";
 	}
+	
+	public String setAttack(int positionY, String positionX) {
+		String[] positionsX = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
+		int intPositionY = -1;
+
+		for (int i = 0; i < positionsX.length; i++) {
+			if (positionsX[i].toLowerCase().equals(positionX.toLowerCase())) {
+				intPositionY = i;
+			}
+		}
+
+		if (intPositionY == -1) {
+			return "Posição 2 não existe!";
+		}
+
+		if (this.matriz[positionY][intPositionY] != 0) {
+			return "Já existe uma peça nesse lugar";
+		}
+
+		this.matriz[positionY][intPositionY] = 2;
+
+
+		return "valido";
+	}
+	
+	
 
 	public int getRows() {
 		return rows;

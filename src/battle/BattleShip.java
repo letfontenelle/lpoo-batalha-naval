@@ -4,6 +4,8 @@ import board.Board;
 import board.Ship;
 
 public class BattleShip extends Ship{
+	
+	
 	private Color color;
 
 	public BattleShip(Board board, Color color) {
@@ -14,5 +16,8 @@ public class BattleShip extends Ship{
 	public Color getColor() {
 		return color;
 	}
+	
+	
+	
 		
 }
