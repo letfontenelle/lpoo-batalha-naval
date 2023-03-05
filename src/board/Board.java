@@ -84,19 +84,15 @@ public class Board {
 			if ((addPosition1 < 0 || addPosition1 > 9) || (addPosition2 < 0 || addPosition2 > 9)) {
 				System.out.println( "Peça fora do tabuleiro, tente novamente.");
 			}
-<<<<<<< HEAD
 			//System.out.println(addPosition1 + " " + addPosition2);
 			//System.out.println(position1 + " " + position2);
 			this.matriz[addPosition1][addPosition2] = 1;
 			// System.out.println(this.matriz[addPosition1][addPosition2]);
-=======
-
 			if (cloneMatriz[addPosition1][addPosition2] != 0) {
 				return "Já existe uma peça nesse lugar";
 			}
 
 			cloneMatriz[addPosition1][addPosition2] = 1;
->>>>>>> 6dad724b29277b83c99afad02b38f4da3d9200dd
 		}
 
 		this.matriz = cloneMatriz.clone();
