@@ -2,12 +2,10 @@ package board;
 
 public class Ship {
 	
-	protected Position position;
 	private Board board;
 
 	public Ship(Board board) {
 		this.board = board;
-		position = null;
 	}
 
 	protected Board getBoard() {
@@ -25,13 +23,5 @@ public class Ship {
 		// { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 }
 		//int[][] shipTypes = { { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 } };
 		return shipTypes;
-	}
-	
-	public static int[][] getAttackShip() {
-		
-		//  {1 - Quantidade de ataques , quantiade de espacos atingidos}
-		
-		int [][] attack = {{3,1}};
-		return attack;
 	}
 }

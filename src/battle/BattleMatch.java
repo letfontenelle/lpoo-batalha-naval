@@ -4,6 +4,8 @@ import board.Board;
 import board.Ship;
 
 import application.UI;
+
+
 public class BattleMatch {
 
 	private Board boardPlayer1;
@@ -48,7 +50,9 @@ public class BattleMatch {
 
 		int[][] shipTypes = Ship.getShipTypes();
 
-		// { { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 } }
+		// { { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 } } 
+		
+		
 		for (int i = 0; i < shipTypes.length; i++) {
 			for (int j = 0; j < shipTypes[i][0]; j++) {
 
@@ -97,26 +101,19 @@ public class BattleMatch {
 	
 	public void setAttack(Board board) {
 		
-		int [][] attackPosition = Ship.getAttackShip();
-		
-		for (int i = 0; i < attackPosition.length; i++) {
-			for (int j = 0; j < attackPosition[i][0]; j++) {
-				switch(attackPosition[i][1]) {
-					case 1:
-						System.out.printf("Digite o %d˚ ataque: ",j+1);
-						System.out.println("");
-						break;
-				}
-				
-				System.out.println("Digite a posição Y (0-9): ");
-				int positionY = UI.input();
-				System.out.println("Digite a posição X (A-J): ");
-				String positionX = UI.inputString();
-		
-				String validationText = board.setAttack(positionY, positionX);
-			}
-		
-		}
+		int qtdAttacks = 3;
+
+        for (int j = 0; j < qtdAttacks; j++) {
+                    System.out.printf("Digite o %d˚ ataque: ",j+1);
+                    System.out.println("");
+
+            System.out.println("Digite a posição Y (0-9): ");
+            int positionY = UI.input();
+            System.out.println("Digite a posição X (A-J): ");
+            String positionX = UI.inputString();
+
+            String validationText = board.setAttack(positionY, positionX);
+        }
 
 	}
 	

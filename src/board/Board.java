@@ -32,6 +32,11 @@ public class Board {
 	}
 
 	public String setShip(int position1, String position2, String direction, int qntd) {
+		
+		if (position1 > 9 || position1 < 0) {
+            return "A primeira posição não existe!";
+        }
+		
 		String[] positions2 = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
 		String formatDirection = direction.toLowerCase();
 		int intPosition2 = -1;
@@ -43,7 +48,7 @@ public class Board {
 		}
 
 		if (intPosition2 == -1) {
-			return "Posição 2 não existe!";
+			return "A segunda posição não existe!";
 		}
 
 		if (this.matriz[position1][intPosition2] != 0) {
@@ -64,30 +69,27 @@ public class Board {
 		int addPosition2 = intPosition2;
 
 		for (int i = 1; i < qntd; i++) {
-			switch (formatDirection) {
-				case "baixo":
-					addPosition1 += 1;
-					break;
-				case "cima":
-					addPosition1 -= 1;
-					break;
-				case "direita":
-					addPosition2 += 1;
-					break;
-				case "esquerda":
-					addPosition2 -= 1;
-					break;
-				default:
-					return "Direção inválida";
-			}
+            switch (formatDirection) {
+                case "cima":
+                    addPosition1 += 1;
+                    break;
+                case "baixo":
+                    addPosition1 -= 1;
+                    break;
+                case "direita":
+                    addPosition2 += 1;
+                    break;
+                case "esquerda":
+                    addPosition2 -= 1;
+                    break;
+                default:
+                    return "Direção inválida";
+            }
 
-			if ((addPosition1 < 0 || addPosition1 > 9) || (addPosition2 < 0 || addPosition2 > 9)) {
-				System.out.println( "Peça fora do tabuleiro, tente novamente.");
-			}
-			//System.out.println(addPosition1 + " " + addPosition2);
-			//System.out.println(position1 + " " + position2);
-			this.matriz[addPosition1][addPosition2] = 1;
-			// System.out.println(this.matriz[addPosition1][addPosition2]);
+            if ((addPosition1 < 0  || addPosition1 > 9) || (addPosition2 < 0 || addPosition2 > 9)) {
+                return "Peça fora do tabuleiro, tente novamente.";
+            }
+            
 			if (cloneMatriz[addPosition1][addPosition2] != 0) {
 				return "Já existe uma peça nesse lugar";
 			}
@@ -119,7 +121,7 @@ public class Board {
 		}
 
 		this.matriz[positionY][intPositionY] = 2;
-
+		
 
 		return "valido";
 	}
