@@ -3,6 +3,7 @@ package application;
 import battle.BattleMatch;
 
 public class Menu {
+	
 	public void print() {
 		UI.printMenu();
 		int option = UI.input();

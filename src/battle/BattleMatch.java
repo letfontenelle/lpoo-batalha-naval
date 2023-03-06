@@ -1,19 +1,21 @@
 package battle;
 
-import board.Board;
+import board.*;
 import board.Ship;
 
 import application.UI;
 
 
 public class BattleMatch {
-	private Board boardPlayer1;
-	private Board boardPlayer2;
+	
+	private Defense boardPlayer1;
+	private Defense boardPlayer2;
 	private Board boardAtaque1;
 
 	public BattleMatch() {
-		boardPlayer1 = new Board(10, 10);
-		boardPlayer2 = new Board(10, 10);
+		
+		boardPlayer1 = new Defense(10, 10);
+		boardPlayer2 = new Defense(10, 10);
 		
 		boardAtaque1 = new Board(10,10);
 	}
@@ -22,14 +24,11 @@ public class BattleMatch {
 		System.out.println("");
 		System.out.println("Navios jogador 1: ");
 		this.setShipsOnBoard(boardPlayer1);
-		System.out.println("GRELHA AZUL");
-		boardPlayer1.printBoard();
 		
 		System.out.println("");
 		System.out.println("Navios jogador 2: ");
 		this.setShipsOnBoard(boardPlayer2);
-		System.out.println("GRELHA VERMELHA");
-		boardPlayer2.printBoard();
+		
 		
 		System.out.println("");
 		System.out.println("ATAQUE - Vez da grelha azul! Escolha os alvos:");
@@ -37,7 +36,7 @@ public class BattleMatch {
 		boardAtaque1.printBoard();
 	}
 
-	public void setShipsOnBoard(Board board) {
+	public void setShipsOnBoard(Defense board) {
 		System.out.println("Escolha posição para cada navio!");
 		System.out.println("");
 
@@ -80,6 +79,7 @@ public class BattleMatch {
 				String validationText = board.setShip(position1, position2, direction, shipTypes[i][1]);
 
 				if (validationText.equals("valido")) {
+					board.printBoard();
 					continue;
 				}
 
