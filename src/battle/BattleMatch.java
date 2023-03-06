@@ -7,41 +7,34 @@ import application.UI;
 
 
 public class BattleMatch {
-
 	private Board boardPlayer1;
 	private Board boardPlayer2;
 	private Board boardAtaque1;
-	;
 
 	public BattleMatch() {
-		
-		
 		boardPlayer1 = new Board(10, 10);
+		boardPlayer2 = new Board(10, 10);
+		
+		boardAtaque1 = new Board(10,10);
+	}
 
+	public void start() {
 		System.out.println("");
 		System.out.println("Navios jogador 1: ");
 		this.setShipsOnBoard(boardPlayer1);
 		System.out.println("GRELHA AZUL");
 		boardPlayer1.printBoard();
 		
-		boardPlayer2 = new Board(10, 10);
-
 		System.out.println("");
 		System.out.println("Navios jogador 2: ");
 		this.setShipsOnBoard(boardPlayer2);
 		System.out.println("GRELHA VERMELHA");
 		boardPlayer2.printBoard();
 		
-		
-		//Ataque grelha azul
-		
-		boardAtaque1 = new Board(10,10);
-		
 		System.out.println("");
 		System.out.println("ATAQUE - Vez da grelha azul! Escolha os alvos:");
 		this.setAttack(boardAtaque1);
 		boardAtaque1.printBoard();
-
 	}
 
 	public void setShipsOnBoard(Board board) {
