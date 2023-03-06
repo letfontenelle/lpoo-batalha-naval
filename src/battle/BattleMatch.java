@@ -1,68 +1,98 @@
 package battle;
 
 import board.*;
-import board.Ship;
 
 import application.UI;
 
 
 public class BattleMatch {
-	
 	private Defense boardPlayer1;
 	private Defense boardPlayer2;
-	private Board boardAtaque1;
+	private Attack boardAtaque1;
+	private Attack boardAtaque2;
 
 	public BattleMatch() {
-		
-		boardPlayer1 = new Defense(10, 10);
-		boardPlayer2 = new Defense(10, 10);
-		
-		boardAtaque1 = new Board(10,10);
+		this.boardPlayer1 = new Defense(10, 10);
+		this.boardPlayer2 = new Defense(10, 10);
+
+		this.boardAtaque1 = new Attack(10,10);
+		this.boardAtaque2 = new Attack(10,10);
 	}
 
 	public void start() {
 		System.out.println("");
 		System.out.println("Navios jogador 1: ");
-		this.setShipsOnBoard(boardPlayer1);
-		
+		this.setShipsOnBoard(this.boardPlayer1);
+
 		System.out.println("");
 		System.out.println("Navios jogador 2: ");
-		this.setShipsOnBoard(boardPlayer2);
-		
-		
-		System.out.println("");
-		System.out.println("ATAQUE - Vez da grelha azul! Escolha os alvos:");
-		this.setAttack(boardAtaque1);
-		boardAtaque1.printBoard();
+		this.setShipsOnBoard(this.boardPlayer2);
+
+		String winner = "";
+
+		while (winner == "") {
+			this.boardPlayer1.printBoard();
+			this.boardAtaque1.printBoard();
+
+			System.out.println("");
+			System.out.println("ATAQUE - Vez da grelha azul! Escolha os alvos:");
+
+			boolean winner1 = this.setAttacksOnBoard(this.boardAtaque1, this.boardPlayer2);
+
+			if (winner1) {
+				winner = "Grelha azul";
+				break;
+			}
+
+			this.boardPlayer2.printBoard();
+			this.boardAtaque2.printBoard();
+
+			System.out.println("");
+			System.out.println("ATAQUE - Vez da grelha vermelha! Escolha os alvos:");
+			
+			boolean winner2 = this.setAttacksOnBoard(this.boardAtaque2, this.boardPlayer1);
+
+			if (winner2) {
+				winner = "Grelha azul";
+				break;
+			}
+		}
+
+		System.out.println("E o vencedor da partida é: " + winner);
 	}
 
-	public void setShipsOnBoard(Defense board) {
+	private void setShipsOnBoard(Defense board) {
 		System.out.println("Escolha posição para cada navio!");
 		System.out.println("");
 
 		int[][] shipTypes = Ship.getShipTypes();
 
 		// { { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 } } 
-		
+		int qtd = 0;
 		
 		for (int i = 0; i < shipTypes.length; i++) {
 			for (int j = 0; j < shipTypes[i][0]; j++) {
+				qtd += shipTypes[i][0];
 
 				switch(shipTypes[i][1]) {
 					case 5:
-						System.out.printf("Digite o 1˚ Porta aviões: ");
+						System.out.printf("Digite o 1° Porta aviões (5 canos): ");
 						System.out.println("");
 						break;
 					case 4:
-						System.out.printf("Digite o %d˚ Navio Tanque: ", j + 1);
+						System.out.printf("Digite o %d° Navio Tanque (4 canos): ", j + 1);
 						System.out.println("");
 						break;
 					case 3:
-						System.out.printf("Digite o %d˚ Contra Torpedeiro: ", j + 1);
+						System.out.printf("Digite o %d° Contra Torpedeiro (3 canos): ", j + 1);
 						System.out.println("");
 						break;
 					case 2:
-						System.out.printf("Digite o %d˚ Submarino: ", j + 1);
+						System.out.printf("Digite a %d° Fragata (2 canos): ", j + 1);
+						System.out.println("");
+						break;
+					case 1:
+						System.out.printf("Digite o %d° Submarino (1 cano): ", j + 1);
 						System.out.println("");
 						break;
 				}
@@ -72,9 +102,12 @@ public class BattleMatch {
 
 				System.out.println("Digite a segunda posição (A-J): ");
 				String position2 = UI.inputString();
+				String direction = "";
 
-				System.out.println("Digite a direção da construção do navio (cima, baixo, direita, esquerda): ");
-				String direction = UI.inputString();
+				if (shipTypes[i][1] != 1) {
+					System.out.println("Digite a direção da construção do navio (cima, baixo, direita, esquerda): ");
+					direction = UI.inputString();	
+				}
 
 				String validationText = board.setShip(position1, position2, direction, shipTypes[i][1]);
 
@@ -88,28 +121,38 @@ public class BattleMatch {
 				j--;
 			}
 		}
+		
+		board.setPositionsWithShips(qtd);
 	}
 	
 	
 	
-	public void setAttack(Board board) {
-		
+	private boolean setAttacksOnBoard(Attack boardAttack, Defense boardDefense) {
 		int qtdAttacks = 3;
 
         for (int j = 0; j < qtdAttacks; j++) {
-                    System.out.printf("Digite o %d˚ ataque: ",j+1);
-                    System.out.println("");
+			System.out.printf("Digite o %d° ataque: ",j+1);
+			System.out.println("");
 
-            System.out.println("Digite a posição Y (0-9): ");
-            int positionY = UI.input();
-            System.out.println("Digite a posição X (A-J): ");
-            String positionX = UI.inputString();
+            System.out.println("Digite a primeira posição (0-9): ");
+            int positionX = UI.input();
+            System.out.println("Digite a segunda posição (A-J): ");
+            String positionY = UI.inputString();
 
-            String validationText = board.setAttack(positionY, positionX);
+            String validationText = boardAttack.setAttack(positionX, positionY, boardDefense);
+
+			if (validationText.equals("valido")) {
+				boardAttack.printBoard();
+				continue;
+			} else if (validationText.equals("ganhador")) {
+				return true;
+			}
+
+			System.out.println("\n Erro: " + validationText);
+			System.out.println("");
+			j--;
         }
 
+		return false;
 	}
-	
-
-	
 }

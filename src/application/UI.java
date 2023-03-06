@@ -11,9 +11,10 @@ public class UI {
 				if (matrizBoard[i][j] == 1) {
 					System.out.print("N");
 				} else if(matrizBoard[i][j] == 2){
-					System.out.println("o");
-				}
-				else{
+					System.out.print("o");
+				} else if(matrizBoard[i][j] == 3){
+					System.out.print("x");
+				} else{
 					System.out.print("~");
 				}
 				System.out.print(" ");
