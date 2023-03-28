@@ -1,12 +1,16 @@
 package board;
 
+
+import exceptions.PosicaoInvalida;
+
 public class Attack extends Board{
 
-	public Attack(int row, int column) {
+	public Attack(int row, int column) throws PosicaoInvalida {
 		super(row, column);
 	}
 
-	public String setAttack(int positionX, String positionY, Defense boardDefense) {
+	public String setAttack(int positionX, String positionY, Defense boardDefense) throws PosicaoInvalida {
+		
 		String positionsString = this.validPosition(positionX, positionY);
 		String[] positions = positionsString.split(";");
 
@@ -18,7 +22,7 @@ public class Attack extends Board{
 		int intPositionY = Integer.parseInt(positions[1]); 
 
 		if (this.matriz[intPositionX][intPositionY] == 2 || this.matriz[intPositionX][intPositionY] == 3) {
-			return "Posição já atacada";
+			throw new PosicaoInvalida("Posição já atacada");
 		}
 
 		if (boardDefense.matriz[intPositionX][intPositionY] == 0) {

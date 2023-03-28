@@ -1,9 +1,11 @@
 package board;
 
+import exceptions.PosicaoInvalida;
+
 public class Defense extends Board {
 	public int positionsWithShips;
 
-	public Defense(int row, int column) {
+	public Defense(int row, int column) throws PosicaoInvalida {
 		super(row, column);
 	}
 
@@ -22,7 +24,9 @@ public class Defense extends Board {
 		}
 	}
 
-	public String setShip(int position1, String position2, String direction, int qntd) {
+	public String setShip(int position1, String position2, String direction, int qntd) throws PosicaoInvalida {
+		
+		
 		String positionsString = this.validPosition(position1, position2);
 		String[] positions = positionsString.split(";");
 
@@ -36,7 +40,7 @@ public class Defense extends Board {
 		String formatDirection = direction.toLowerCase();
 
 		if (this.matriz[intPosition1][intPosition2] != 0) {
-			return "Já existe uma peça nesse lugar";
+			throw new PosicaoInvalida("Já existe uma peça nesse lugar");
 		}
 
 		int[][] cloneMatriz = new int[10][10];
@@ -71,11 +75,11 @@ public class Defense extends Board {
             }
 
             if ((addPosition1 < 0  || addPosition1 > 9) || (addPosition2 < 0 || addPosition2 > 9)) {
-                return "Peça fora do tabuleiro, tente novamente.";
+                throw new PosicaoInvalida("Peça fora do tabuleiro, tente novamente.");
             }
             
 			if (cloneMatriz[addPosition1][addPosition2] != 0) {
-				return "Já existe uma peça nesse lugar";
+				throw new PosicaoInvalida("Já existe uma peça nesse lugar.");
 			}
 
 			cloneMatriz[addPosition1][addPosition2] = 1;

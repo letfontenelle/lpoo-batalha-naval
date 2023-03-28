@@ -1,6 +1,7 @@
 package board;
 
 import application.UI;
+import exceptions.PosicaoInvalida;
 
 public class Board {
 	
@@ -9,7 +10,7 @@ public class Board {
 	private int rows;
 	private int columns;
 
-	public Board(int rows, int columns) {
+	public Board(int rows, int columns) throws PosicaoInvalida{
 		this.rows = rows;
 		this.columns = columns;
 
@@ -28,9 +29,13 @@ public class Board {
 	public void printBoard() {
 		UI.printBoard(this.matriz);
 	}	
-	public String validPosition(int positionY, String positionX ) {
+	
+	
+	public String validPosition(int positionY, String positionX ) throws PosicaoInvalida {
+		
+		
 		if (positionY > 9 || positionY < 0) {
-            return "A primeira posição não existe!";
+			throw new PosicaoInvalida("A primeira e segunda posição não existem!");
         }
 		
 		String[] positions2 = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
@@ -43,7 +48,7 @@ public class Board {
 		}
 
 		if (intPosition2 == -1) {
-			return "A segunda posição não existe!";
+			throw new PosicaoInvalida("A segunda posição não existe!"); 
 		}
 
 		return positionY + ";" + intPosition2;

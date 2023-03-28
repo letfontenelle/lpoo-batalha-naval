@@ -3,6 +3,7 @@ package application;
 import java.util.Scanner;
 
 public class UI {
+	
 	public static void printBoard(int[][] matrizBoard) {
 				
 		for (int i = 9; i >= 0; i--) {

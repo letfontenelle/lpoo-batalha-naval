@@ -1,6 +1,10 @@
 package battle;
 
 import board.*;
+import exceptions.AtributoInvalido;
+import exceptions.PosicaoInvalida;
+
+import java.util.InputMismatchException;
 
 import application.UI;
 
@@ -10,16 +14,19 @@ public class BattleMatch {
 	private Defense boardPlayer2;
 	private Attack boardAtaque1;
 	private Attack boardAtaque2;
+	private int position1;
+	private String position2;
 
-	public BattleMatch() {
+	public BattleMatch()throws AtributoInvalido, PosicaoInvalida {
 		this.boardPlayer1 = new Defense(10, 10);
 		this.boardPlayer2 = new Defense(10, 10);
 
 		this.boardAtaque1 = new Attack(10,10);
 		this.boardAtaque2 = new Attack(10,10);
 	}
+	
 
-	public void start() {
+	public void start() throws AtributoInvalido, PosicaoInvalida {
 		System.out.println("");
 		System.out.println("Navios jogador 1: ");
 		this.setShipsOnBoard(this.boardPlayer1);
@@ -61,7 +68,7 @@ public class BattleMatch {
 		System.out.println("E o vencedor da partida é: " + winner);
 	}
 
-	private void setShipsOnBoard(Defense board) {
+	private void setShipsOnBoard(Defense board) throws AtributoInvalido, PosicaoInvalida {
 		System.out.println("Escolha posição para cada navio!");
 		System.out.println("");
 
@@ -96,15 +103,42 @@ public class BattleMatch {
 						System.out.println("");
 						break;
 				}
-
+				
+				int position1 = 0;
+				
+				//**************************************************************************************************** 
+				
+				try {
+					
 				System.out.println("Digite a primeira posição (0-9): ");
-				int position1 = UI.input();
-
+				position1 = UI.input();
+				
+				} catch (InputMismatchException ex) {
+					
+					throw new AtributoInvalido("Atribuito invalido! Escolha um numero inteiro.");
+				}
+				
+				
+				String position2 = "x";
+				
+				try {
 				System.out.println("Digite a segunda posição (A-J): ");
-				String position2 = UI.inputString();
+				position2 = UI.inputString();
+				
+				
+				} catch(InputMismatchException ex) {
+					throw new AtributoInvalido("Atributo Invalido: Escolha uma letra de A a J!");
+				}
+				
+				//******************************************************************************************************
+				
+				
 				String direction = "";
 
 				if (shipTypes[i][1] != 1) {
+					
+					
+					
 					System.out.println("Digite a direção da construção do navio (cima, baixo, direita, esquerda): ");
 					direction = UI.inputString();	
 				}
@@ -127,7 +161,7 @@ public class BattleMatch {
 	
 	
 	
-	private boolean setAttacksOnBoard(Attack boardAttack, Defense boardDefense) {
+	private boolean setAttacksOnBoard(Attack boardAttack, Defense boardDefense) throws AtributoInvalido, PosicaoInvalida {
 		int qtdAttacks = 3;
 
         for (int j = 0; j < qtdAttacks; j++) {

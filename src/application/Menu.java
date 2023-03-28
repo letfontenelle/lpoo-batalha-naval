@@ -1,10 +1,12 @@
 package application;
 
 import battle.BattleMatch;
+import exceptions.AtributoInvalido;
+import exceptions.PosicaoInvalida;
 
 public class Menu {
 	
-	public void print() {
+	public void print() throws AtributoInvalido, PosicaoInvalida {
 		UI.printMenu();
 		int option = UI.input();
 
