@@ -113,9 +113,9 @@ public class BattleMatch {
 				System.out.println("Digite a primeira posição (0-9): ");
 				position1 = UI.input();
 				
-				} catch (InputMismatchException ex) {
+				} catch (PosicaoInvalida ex) {
+					setShipsOnBoard(board);
 					
-					throw new AtributoInvalido("Atribuito invalido! Escolha um numero inteiro.");
 				}
 				
 				
@@ -126,11 +126,9 @@ public class BattleMatch {
 				position2 = UI.inputString();
 				
 				
-				} catch(InputMismatchException ex) {
-					throw new AtributoInvalido("Atributo Invalido: Escolha uma letra de A a J!");
+				} catch(PosicaoInvalida ex) {
+					setShipsOnBoard(board);
 				}
-				
-				//******************************************************************************************************
 				
 				
 				String direction = "";
@@ -165,15 +163,33 @@ public class BattleMatch {
 		int qtdAttacks = 3;
 
         for (int j = 0; j < qtdAttacks; j++) {
+        	
+        	
+        	
 			System.out.printf("Digite o %d° ataque: ",j+1);
 			System.out.println("");
+			
+			
+			int positionX = 0;
+			
+			try {
+				System.out.println("Digite a primeira posição (0-9): ");
+	            positionX = UI.input();
+			} catch (PosicaoInvalida e){
+				setAttacksOnBoard(boardAttack, boardDefense);
+			}
 
-            System.out.println("Digite a primeira posição (0-9): ");
-            int positionX = UI.input();
-            System.out.println("Digite a segunda posição (A-J): ");
-            String positionY = UI.inputString();
+            
+			String positionY = "x";
+            try {
+                System.out.println("Digite a segunda posição (A-J): ");
+                positionY = UI.inputString();
+            } catch (PosicaoInvalida e) {
+            	setAttacksOnBoard(boardAttack, boardDefense);
+            }
 
-            String validationText = boardAttack.setAttack(positionX, positionY, boardDefense);
+  
+			String validationText = boardAttack.setAttack(positionX, positionY, boardDefense);
 
 			if (validationText.equals("valido")) {
 				boardAttack.printBoard();
