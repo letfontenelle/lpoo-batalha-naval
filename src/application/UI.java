@@ -54,22 +54,7 @@ public class UI {
 
 	public static String inputString() throws PosicaoInvalida {
 		Scanner scanner = new Scanner(System.in);
-		
-		String positionX = scanner.nextLine();
-		
-		String[] positions2 = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
-		int intPosition2 = -1;
 
-		for (int i = 0; i < positions2.length; i++) {
-			if (positions2[i].toLowerCase().equals(positionX.toLowerCase())) {
-				intPosition2 = i;
-			}
-		}
-
-		if (intPosition2 == -1) {
-			throw new PosicaoInvalida("A segunda posição não existe!"); 
-		}
-		return positionX;
-
+		return scanner.nextLine();
 	}
 }

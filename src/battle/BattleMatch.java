@@ -141,7 +141,7 @@ public class BattleMatch {
 					direction = UI.inputString();	
 				}
 
-				String validationText = board.setShip(position1, position2, direction, shipTypes[i][1]);
+				String validationText = board.setOnBoard(position1, position2, direction, shipTypes[i][1], board);
 
 				if (validationText.equals("valido")) {
 					board.printBoard();
@@ -153,7 +153,7 @@ public class BattleMatch {
 				j--;
 			}
 		}
-		
+
 		board.setPositionsWithShips(qtd);
 	}
 	
@@ -189,7 +189,7 @@ public class BattleMatch {
             }
 
   
-			String validationText = boardAttack.setAttack(positionX, positionY, boardDefense);
+			String validationText = boardAttack.setOnBoard(positionX, positionY, "", 0, boardDefense);
 
 			if (validationText.equals("valido")) {
 				boardAttack.printBoard();
