@@ -44,8 +44,9 @@ public class UI {
 		Scanner scanner = new Scanner(System.in);
 		int positionY = scanner.nextInt();
 		
+		
 		if (positionY > 9 || positionY < 0) {
-			throw new PosicaoInvalida("A primeira e segunda posição não existem!");
+			throw new PosicaoInvalida("A primeira posição não existe!");
         } else {
         	return positionY;
         }
@@ -53,23 +54,12 @@ public class UI {
 	}
 
 	public static String inputString() throws PosicaoInvalida {
+		
 		Scanner scanner = new Scanner(System.in);
 		
-		String positionX = scanner.nextLine();
-		
-		String[] positions2 = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
-		int intPosition2 = -1;
+		String position2 = scanner.nextLine();
+		return position2;
 
-		for (int i = 0; i < positions2.length; i++) {
-			if (positions2[i].toLowerCase().equals(positionX.toLowerCase())) {
-				intPosition2 = i;
-			}
-		}
-
-		if (intPosition2 == -1) {
-			throw new PosicaoInvalida("A segunda posição não existe!"); 
-		}
-		return positionX;
 
 	}
 }

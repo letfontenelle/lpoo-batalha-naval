@@ -104,10 +104,10 @@ public class BattleMatch {
 						break;
 				}
 				
-				int position1 = 0;
+				
 				
 				//**************************************************************************************************** 
-				
+				int position1 = 10;
 				try {
 					
 				System.out.println("Digite a primeira posição (0-9): ");
@@ -116,6 +116,8 @@ public class BattleMatch {
 				} catch (PosicaoInvalida ex) {
 					setShipsOnBoard(board);
 					
+				} catch (InputMismatchException e) {
+					setShipsOnBoard(board);
 				}
 				
 				
@@ -125,8 +127,10 @@ public class BattleMatch {
 				System.out.println("Digite a segunda posição (A-J): ");
 				position2 = UI.inputString();
 				
-				
 				} catch(PosicaoInvalida ex) {
+					setShipsOnBoard(board);
+					
+				} catch (InputMismatchException e) {
 					setShipsOnBoard(board);
 				}
 				
@@ -134,9 +138,6 @@ public class BattleMatch {
 				String direction = "";
 
 				if (shipTypes[i][1] != 1) {
-					
-					
-					
 					System.out.println("Digite a direção da construção do navio (cima, baixo, direita, esquerda): ");
 					direction = UI.inputString();	
 				}
@@ -170,23 +171,29 @@ public class BattleMatch {
 			System.out.println("");
 			
 			
-			int positionX = 0;
-			
+			int positionX = 10;
 			try {
 				System.out.println("Digite a primeira posição (0-9): ");
 	            positionX = UI.input();
-			} catch (PosicaoInvalida e){
-				setAttacksOnBoard(boardAttack, boardDefense);
+			} catch (PosicaoInvalida e) {
+				setAttacksOnBoard(boardAttack,boardDefense);
+				
+			} catch (InputMismatchException e) {
+				setAttacksOnBoard(boardAttack,boardDefense);
 			}
-
-            
-			String positionY = "x";
-            try {
+			
+			String positionY = "";
+			try {
                 System.out.println("Digite a segunda posição (A-J): ");
                 positionY = UI.inputString();
-            } catch (PosicaoInvalida e) {
-            	setAttacksOnBoard(boardAttack, boardDefense);
-            }
+                
+			} catch (PosicaoInvalida e) {
+				setAttacksOnBoard(boardAttack,boardDefense);
+				
+			}catch (InputMismatchException e) {
+				setAttacksOnBoard(boardAttack,boardDefense);
+			}
+
 
   
 			String validationText = boardAttack.setAttack(positionX, positionY, boardDefense);

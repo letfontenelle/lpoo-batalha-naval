@@ -1,5 +1,7 @@
 package application;
 
+import java.util.InputMismatchException;
+
 import exceptions.AtributoInvalido;
 import exceptions.PosicaoInvalida;
 
@@ -19,6 +21,9 @@ public class Main {
 			
 			catch(PosicaoInvalida e) {
 				System.out.print("Erro!: " + e.getMessage());
+				
+			} catch (InputMismatchException e) {
+				System.out.print("Erro, atributo invalido.");
 			}
 			
 			catch(RuntimeException e) {

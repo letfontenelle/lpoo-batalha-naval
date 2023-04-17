@@ -48,7 +48,7 @@ public class Board {
 		}
 
 		if (intPosition2 == -1) {
-			throw new PosicaoInvalida("A segunda posição não existe!"); 
+			throw new PosicaoInvalida("Segunda posição não existe!"); 
 		}
 
 		return positionY + ";" + intPosition2;
