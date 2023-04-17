@@ -2,6 +2,7 @@ package board;
 
 import exceptions.PosicaoInvalida;
 
+import application.UI;
 public class Defense extends Board {
 	public int positionsWithShips;
 
@@ -11,6 +12,11 @@ public class Defense extends Board {
 
 	public void setPositionsWithShips(int qtd) {
 		this.positionsWithShips = qtd;
+	}
+
+	public void printBoard() {
+		System.out.println(" -----  DEFESA  -----");
+		UI.printBoard(this.matriz);
 	}
 
 	protected void getAttacked(int positionX, int positionY) {
@@ -24,9 +30,8 @@ public class Defense extends Board {
 		}
 	}
 
-	public String setShip(int position1, String position2, String direction, int qntd) throws PosicaoInvalida {
-		
-		
+	@Override
+	public String setOnBoard(int position1, String position2, String direction, int qntd, Defense boardDefense) throws PosicaoInvalida{
 		String positionsString = this.validPosition(position1, position2);
 		String[] positions = positionsString.split(";");
 

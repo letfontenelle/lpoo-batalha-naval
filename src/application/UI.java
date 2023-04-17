@@ -56,10 +56,14 @@ public class UI {
 	public static String inputString() throws PosicaoInvalida {
 		
 		Scanner scanner = new Scanner(System.in);
+<<<<<<< HEAD
 		
 		String position2 = scanner.nextLine();
 		return position2;
 
+=======
+>>>>>>> 80e49c0b0b31136fcf8b10c140623f51625b4abc
 
+		return scanner.nextLine();
 	}
 }

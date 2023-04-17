@@ -3,9 +3,7 @@ package board;
 import application.UI;
 import exceptions.PosicaoInvalida;
 
-public class Board {
-	
-	
+abstract class Board {
 	public int[][] matriz;
 	private int rows;
 	private int columns;
@@ -26,14 +24,11 @@ public class Board {
 		return matriz;
 	}
 
-	public void printBoard() {
-		UI.printBoard(this.matriz);
-	}	
-	
-	
+	public abstract void printBoard();
+
+	public abstract String setOnBoard(int position1, String position2, String direction, int qntd, Defense boardDefense) throws PosicaoInvalida;
+
 	public String validPosition(int positionY, String positionX ) throws PosicaoInvalida {
-		
-		
 		if (positionY > 9 || positionY < 0) {
 			throw new PosicaoInvalida("A primeira e segunda posição não existem!");
         }

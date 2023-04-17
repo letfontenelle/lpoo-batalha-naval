@@ -1,6 +1,6 @@
 package battle;
 
-import board.Board;
+import board.*;
 import board.Ship;
 
 public class BattleShip{
