@@ -11,7 +11,8 @@ public class Main {
 		
 			
 			try {Menu menu = new Menu();
-			menu.print();
+			Menu frame = new Menu();
+			frame.main(args);
 			} 
 			
 			catch(AtributoInvalido e) {
