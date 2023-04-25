@@ -10,16 +10,16 @@ import application.UI;
 
 
 public class BattleMatch {
-	private Defense boardPlayer1;
-	private Defense boardPlayer2;
+	public Defense boardPlayer1;
+	public Defense boardPlayer2;
 	private Attack boardAtaque1;
 	private Attack boardAtaque2;
 	private int position1;
 	private String position2;
 
 	public BattleMatch()throws AtributoInvalido, PosicaoInvalida {
-		this.boardPlayer1 = new Defense(10, 10);
-		this.boardPlayer2 = new Defense(10, 10);
+		this.boardPlayer1 = new Defense(10, 10, 1);
+		this.boardPlayer2 = new Defense(10, 10, 2);
 
 		this.boardAtaque1 = new Attack(10,10);
 		this.boardAtaque2 = new Attack(10,10);

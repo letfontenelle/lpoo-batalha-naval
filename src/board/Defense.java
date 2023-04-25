@@ -1,22 +1,34 @@
 package board;
 
+import exceptions.AtributoInvalido;
 import exceptions.PosicaoInvalida;
 
-import application.UI;
+import javax.swing.table.DefaultTableModel;
+
 public class Defense extends Board {
 	public int positionsWithShips;
+	public int shipsPlaced = 0;
 
-	public Defense(int row, int column) throws PosicaoInvalida {
-		super(row, column);
+	public Defense(int row, int column, int playerNumber) throws PosicaoInvalida {
+		super(row, column, playerNumber);
 	}
 
 	public void setPositionsWithShips(int qtd) {
-		this.positionsWithShips = qtd;
+		this.positionsWithShips += qtd;
 	}
 
-	public void printBoard() {
-		System.out.println(" -----  DEFESA  -----");
-		UI.printBoard(this.matriz);
+	public void printBoard(DefaultTableModel table) {
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (this.matriz[i][j] == 1) {
+					table.setValueAt("N", i + 1, j + 1);
+				} else if(this.matriz[i][j] == 2){
+					table.setValueAt("o", i + 1, j + 1);
+				} else if(this.matriz[i][j] == 3){
+					table.setValueAt("x", i + 1, j + 1);
+				}
+			}
+		}
 	}
 
 	protected void getAttacked(int positionX, int positionY) {
@@ -64,10 +76,10 @@ public class Defense extends Board {
 		for (int i = 1; i < qntd; i++) {
             switch (formatDirection) {
                 case "cima":
-                    addPosition1 += 1;
+                    addPosition1 -= 1;
                     break;
                 case "baixo":
-                    addPosition1 -= 1;
+                    addPosition1 += 1;
                     break;
                 case "direita":
                     addPosition2 += 1;
@@ -93,5 +105,79 @@ public class Defense extends Board {
 		this.matriz = cloneMatriz.clone();
 
 		return "valido";
+	}
+
+	@Override
+	public void printBoard() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public String setShipsOnBoard(int position1, String position2, String direction) throws AtributoInvalido, PosicaoInvalida {
+		System.out.println(Ship.getShipTotals());
+		if (Ship.getShipTotals() == this.shipsPlaced) {
+			return "";
+		}
+		
+		int[][] shipTypes = Ship.getShipTypes();
+		int shipType = 0;
+
+		// { { 1, 5 }, { 2, 4 }, { 3, 3 }, { 4, 2 } } 
+		int qtd = 0;
+		int cont = 0;
+
+		for (int i = 0; i < shipTypes.length; i++) {
+			for (int j = 0; j < shipTypes[i][0]; j++) {
+				if (cont == this.shipsPlaced) {
+					System.out.println(shipTypes[i][0]);
+					System.out.println(shipTypes[i][1]);
+					qtd += shipTypes[i][1];
+					shipType = shipTypes[i][1];
+
+					switch(shipTypes[i][1]) {
+						case 5:
+							System.out.printf("Digite o 1° Porta aviões (5 canos): ");
+							System.out.println("");
+							break;
+						case 4:
+							System.out.printf("Digite o %d° Navio Tanque (4 canos): ", j + 1);
+							System.out.println("");
+							break;
+						case 3:
+							System.out.printf("Digite o %d° Contra Torpedeiro (3 canos): ", j + 1);
+							System.out.println("");
+							break;
+						case 2:
+							System.out.printf("Digite a %d° Fragata (2 canos): ", j + 1);
+							System.out.println("");
+							break;
+						case 1:
+							System.out.printf("Digite o %d° Submarino (1 cano): ", j + 1);
+							System.out.println("");
+							break;
+					}
+					cont = -1;
+					break;
+				}
+				
+				cont += 1;
+			}
+			
+			if (cont == -1) {
+				break;
+			}
+		}
+				
+		//********************************** 
+		String validationText = this.setOnBoard(position1, position2, direction, shipType, this);
+
+		if (validationText == "valido") {
+			System.out.println(qtd);
+			this.printBoard();
+			this.setPositionsWithShips(qtd);
+			this.shipsPlaced += 1;
+		}
+
+		return validationText;
 	}
 }
