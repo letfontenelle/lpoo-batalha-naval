@@ -6,7 +6,6 @@ import exceptions.PosicaoInvalida;
 
 import java.util.InputMismatchException;
 
-
 public class BattleMatch {
 	public Defense boardPlayer1;
 	public Defense boardPlayer2;

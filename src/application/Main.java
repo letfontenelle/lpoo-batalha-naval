@@ -7,29 +7,28 @@ import exceptions.PosicaoInvalida;
 
 public class Main {
 
-	public static void main(String[] args) throws AtributoInvalido, PosicaoInvalida {	
-		
-			
-			try {Menu menu = new Menu();
+	public static void main(String[] args) throws AtributoInvalido, PosicaoInvalida {
+
+		try {
 			Menu frame = new Menu();
 			frame.main(args);
-			} 
-			
-			catch(AtributoInvalido e) {
-				
-				System.out.println("Erro!: " + e.getMessage());
-			}
-			
-			catch(PosicaoInvalida e) {
-				System.out.print("Erro!: " + e.getMessage());
-				
-			} catch (InputMismatchException e) {
-				System.out.print("Erro, atributo invalido.");
-			}
-			
-			catch(RuntimeException e) {
-				System.out.print("Erro inesperado.");
-		
-			}
+		}
+
+		catch (AtributoInvalido e) {
+
+			System.out.println("Erro!: " + e.getMessage());
+		}
+
+		catch (PosicaoInvalida e) {
+			System.out.print("Erro!: " + e.getMessage());
+
+		} catch (InputMismatchException e) {
+			System.out.print("Erro, atributo invalido.");
+		}
+
+		catch (RuntimeException e) {
+			System.out.print("Erro inesperado.");
+
+		}
 	}
 }
