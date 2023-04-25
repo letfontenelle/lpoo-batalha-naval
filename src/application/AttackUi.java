@@ -49,7 +49,7 @@ public class AttackUi extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AttackUi frame = new AttackUi(null, null);
+					AttackUi frame = new AttackUi(null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -63,7 +63,7 @@ public class AttackUi extends JFrame {
 	 * @throws PosicaoInvalida 
 	 * @throws AtributoInvalido 
 	 */
-	public AttackUi(Attack boardAttack, Defense boardDefense) throws AtributoInvalido, PosicaoInvalida {
+	public AttackUi(Attack boardAttack, Defense boardDefense, Defense adversarioDefense) throws AtributoInvalido, PosicaoInvalida {
         AttackUi esse = this;
 
         this.boardAttack = boardAttack; 
@@ -235,7 +235,7 @@ public class AttackUi extends JFrame {
 				String textField_2Value = textField_2.getText();
 				
 				try {
-					String validationText = boardAttack.setAttacksOnBoard(boardDefense, Integer.parseInt(textFieldValue), textField_2Value);
+					String validationText = boardAttack.setAttacksOnBoard(adversarioDefense, Integer.parseInt(textFieldValue), textField_2Value);
 					System.out.println(validationText);
 					if (validationText == "valido") {
 						boardAttack.printBoardAtt(tableModel2);
@@ -276,6 +276,7 @@ public class AttackUi extends JFrame {
 				esse.setVisible(false);
 				frame.printBoards();
 				frame.setVisible(true);
+				qtdAttack = 3;
 			}
 		});
 		btnContinuar.setFont(new Font("Tahoma", Font.PLAIN, 15));

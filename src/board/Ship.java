@@ -8,7 +8,7 @@ public class Ship {
 	// { 2, 3 } - 2 navios de 3 canos
 	// { 3, 2 } - 3 navios de 2 canos
 	// { 4, 1 } - 4 navios de 1 cano
-	final static int[][] shipTypes = { { 1, 5 }, { 1, 1 } };
+	final static int[][] shipTypes = {{ 1, 2 }, { 1, 1 } };
 	static int shipTotals;
 	private Board board;
 

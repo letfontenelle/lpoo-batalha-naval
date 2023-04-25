@@ -61,8 +61,8 @@ public class Menu {
 		DefenseUi frame2 = new DefenseUi(battleMatch.boardPlayer1);
 		DefenseUi frame3 = new DefenseUi(battleMatch.boardPlayer2);
 		
-		AttackUi frame4 = new AttackUi(battleMatch.boardAtaque1, battleMatch.boardPlayer1);
-		AttackUi frame5 = new AttackUi(battleMatch.boardAtaque2, battleMatch.boardPlayer2);
+		AttackUi frame4 = new AttackUi(battleMatch.boardAtaque1, battleMatch.boardPlayer1, battleMatch.boardPlayer2);
+		AttackUi frame5 = new AttackUi(battleMatch.boardAtaque2, battleMatch.boardPlayer2, battleMatch.boardPlayer1);
 
 		
 		frame.setBounds(100, 100, 1024, 768);
