@@ -15,7 +15,6 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 
 import battle.BattleMatch;
-
 import exceptions.AtributoInvalido;
 import exceptions.PosicaoInvalida;
 
@@ -57,13 +56,18 @@ public class Menu {
 	 */
 	private void initialize() throws AtributoInvalido, PosicaoInvalida {
 		BattleMatch battleMatch = new BattleMatch();
-
+		
 		frame = new JFrame();
 		DefenseUi frame2 = new DefenseUi(battleMatch.boardPlayer1);
 		DefenseUi frame3 = new DefenseUi(battleMatch.boardPlayer2);
+		
+		AttackUi frame4 = new AttackUi(battleMatch.boardAtaque1, battleMatch.boardPlayer1);
+		AttackUi frame5 = new AttackUi(battleMatch.boardAtaque2, battleMatch.boardPlayer2);
 
+		
 		frame.setBounds(100, 100, 1024, 768);
 		frame2.setBounds(100, 100, 1024, 768);
+		frame3.setBounds(100, 100, 1024, 768);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 		JButton btnNewButton = new JButton("JOGAR");
@@ -71,10 +75,14 @@ public class Menu {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 38));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				frame.setVisible(false); // hides it temporarily
-				frame2.setVisible(true); // shows it
-				System.out.println("Botao");
+				
+				frame.setVisible(false); //hides it temporarily
+				frame2.setVisible(true); //shows it
+				frame2.setOtherFrame(frame3);
+				frame3.setOtherFrame(frame4);
+				
+				frame4.setOtherFrame(frame5);
+				frame5.setOtherFrame(frame4);
 			}
 		});
 		frame.getContentPane().add(btnNewButton, BorderLayout.CENTER);
